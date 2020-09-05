@@ -1,0 +1,48 @@
+*********************************************************
+*                  Update v1.4.1                        *
+*********************************************************
+
+*** BUGS FIXED ***
+- Search in Home (Index)
+- Edit user from Panel Admin
+- Collections Private
+- Social Login (Facebook)
+
+*** NEWS ***
+- Animate Text Index
+
+
+
+******************************************************
+***                   Files Affected              ****
+******************************************************
+
+
+*** VIEWS ****
+/ resources / views / index / home.blade.php
+/ resources / views / includes / css_general.blade.php
+
+*** LANG ****
+/ resources / lang / en / error.php Line:32
+
+
+*** CONTROLLERS ****
+app / Htpp / Controller / Auth / RegisterController.php
+app / Htpp / Controller / UserController.php
+app / Htpp / Controller / SocialAuthController.php
+
+*** APP ****
+app / SocialAccountService.php
+
+*** MODELS ****
+app / Models / User.php
+
+*** PUBLIC ****
+/ public / js / functions.js
+/ public / css / vivify.min.css **NEW**
+
+
+
+Visit http://miguelvasquez.net
+
+***** Thanks! *****

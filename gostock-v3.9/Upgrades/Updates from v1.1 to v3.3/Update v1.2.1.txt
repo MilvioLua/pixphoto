@@ -1,0 +1,34 @@
+*********************************************************
+*                  Update v1.2.1                        *
+*********************************************************
+
+*** BUGS FIXED ***
+- Facebook Login
+- Pending images show in similar photos
+- Delete user
+
+*** NEWS ***
+- Improved Facebook errors Login
+- Added Https to Google Fonts
+
+
+******************************************************
+***                   Files Affected              ****
+******************************************************
+
+/ vendor / laravel / socialite / src / Two / FacebookProvider.php
+
+/ app / SocialAccountService.php
+
+/ app / Http / Controllers / SocialAuthController.php
+
+/ app / Http / Controllers / Traits / userTraits.php
+
+/ resources / views / app.blade.php
+/ resources / views / include / css_general.blade.php
+/ resources / views / images / show.blade.php
+
+/ resources / lang / en / error.php ** Line #31 approximately
+
+
+**** Thanks! *****

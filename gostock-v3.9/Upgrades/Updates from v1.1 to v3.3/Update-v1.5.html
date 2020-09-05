@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/images/favicon.png">
+
+    <title>Update GoStock – Free Stock Photos Script v1.5</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <link href="assets/css/prism.css" rel="stylesheet">
+    <link href="assets/css/prism-line-highlight.css" rel="stylesheet">
+    <link href="assets/css/all.min.css" rel="stylesheet">
+
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css' />
+
+  </head>
+
+  <body>
+
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron jb-bg text-center">
+        <div class="container">
+          <div class="position-relative">
+            <h1 class="jumbotron-title">GoStock – Free Stock Photos Script v1.5</h1>
+              <p class="lead">Updated:  15, November 2018</p>
+          </div>
+        </div>
+      </div>
+
+<div class="container">
+
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <h2 class="title2">Changelog</h2>
+
+          <ul class="list-cgl">
+            <li class="title-list">Fixed</li>
+
+            <li>Social Login</li>
+            <li>Removing photos</li>
+            <li>HTML characters in comments</li>
+
+            <li class="title-list">Added</li>
+
+            <li>Upgrade to <strong>Laravel 5.7</strong></li>
+						<li><code>MustVerifyEmail</code> in User model</li>
+            <li>Added search form on the search page</li>
+
+            <li class="title-list">Changed</li>
+
+						<li>Validation images dimensions</li>
+					</ul><!-- /.ul list-cgl -->
+
+          <h2 class="title2">Affected files</h2>
+
+          <ul class="list-cgl affected-files">
+
+            <li class="title-list"><code><i class="fas fa-folder-open"></i> app</code></li>
+
+            <li>SocialAccountService.php</li>
+
+            <li class="title-list"><code><i class="fas fa-folder-open"></i> app / Models</code></li>
+
+						<li>User.php</li>
+
+<pre data-line="1,3,9" class="line-numbers" data-start="5"><code class="language-php">use Laravel\Cashier\Billable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ResetPassword as ResetPasswordNotification;
+
+class User extends Authenticatable
+{
+	use Notifiable, Billable;</code></pre>
+
+  <li class="title-list"><code><i class="fas fa-folder-open"></i> app / Http / Controllers</code></li>
+
+  <li>SocialAuthController.php</li>
+
+  <li>AdminController.php</li>
+
+  <pre class="line-numbers" data-start="58"><code class="language-php">'thumbnail' => 'mimes:jpg,gif,png,jpe,jpeg|dimensions:min_width=457,min_height=359',</code></pre>
+  <pre class="line-numbers" data-start="132"><code class="language-php">'thumbnail' => 'mimes:jpg,gif,png,jpe,jpeg|dimensions:min_width=457,min_height=359',</code></pre>
+
+  <pre data-line="9-15" class="line-numbers" data-start="391"><code class="language-php">// Collections Images
+$collectionsImages = CollectionsImages::where('images_id', '=', $request->id)->get();
+ if( isset( $collectionsImages ) ){
+    foreach($collectionsImages as $collectionsImage){
+      $collectionsImage->delete();
+    }
+  }
+
+  // Images Reported
+  $imagesReporteds = ImagesReported::where('image_id', '=', $request->id)->get();
+   if( isset( $imagesReporteds ) ){
+      foreach($imagesReporteds as $imagesReported){
+        $imagesReported->delete();
+      }
+    }</code></pre>
+
+    <li>CommentsController.php</li>
+    <pre class="line-numbers" data-start="63"><code class="language-php">$sql->reply = trim(Helper::checkTextDb($request->comment));</code></pre>
+    <pre class="line-numbers" data-start="91"><code class="language-php">&lt;p class="comments-p mentions-links">'.Helper::checkText($sql->reply).'&lt;/p&gt;</code></pre>
+
+    <li>ImagesController.php</li>
+    <pre class="line-numbers" data-start="49"><code class="language-php">'photo'=>'required|mimes:jpg,gif,png,jpe,jpeg|dimensions:min_width='.$dimensions[0].',min_height='.$dimensions[1].'|max:'.$this->settings->file_size_allowed.'',</code></pre>
+
+    <pre data-line="9-15" class="line-numbers" data-start="518"><code class="language-php">// Collections Images
+  $collectionsImages = CollectionsImages::where('images_id', '=', $request->id)->get();
+   if( isset( $collectionsImages ) ){
+      foreach($collectionsImages as $collectionsImage){
+        $collectionsImage->delete();
+      }
+    }
+
+    // Images Reported
+    $imagesReporteds = ImagesReported::where('image_id', '=', $request->id)->get();
+     if( isset( $imagesReporteds ) ){
+        foreach($imagesReporteds as $imagesReported){
+          $imagesReported->delete();
+        }
+      }</code></pre>
+
+      <li>UserController.php</li>
+      <pre class="line-numbers" data-start="292"><code class="language-php">'photo' => 'required|mimes:jpg,gif,png,jpe,jpeg|dimensions:min_width=180,min_height=180|max:'.$this->settings->file_size_allowed.'',</code></pre>
+      <pre class="line-numbers" data-start="91"><code class="language-php">'photo' => 'required|mimes:jpg,gif,png,jpe,jpeg|dimensions:min_width=800,min_height=600|max:'.$settings->file_size_allowed.'',</code></pre>
+
+
+  <li class="title-list"><code><i class="fas fa-folder-open"></i> resources / lang / en</code></li>
+
+    <li>error.php</li>
+    <pre class="line-numbers" data-start="34"><code class="language-php">/************ Version 1.5 **************/
+  	"mail_exists" => 'Error! the email is already in use by another user.',</code></pre>
+
+  <li class="title-list"><code><i class="fas fa-folder-open"></i> resources / views</code></li>
+
+  <ul>
+    <li class="title-list"><code><em>default</em></code></li>
+    <li>search.blade.php</li>
+    <pre data-line="6-13" class="line-numbers" data-start="7"><code class="language-markup">&lt;div class="jumbotron md index-header jumbotron_set jumbotron-cover"&gt;
+  &lt;div class="container wrap-jumbotron position-relative"&gt;
+    &lt;h1 class="title-site title-sm"&gt;{{ trans('misc.search') }}&lt;/h1&gt;
+    &lt;p class="subtitle-site none-overflow"&gt;&lt;strong&gt;"{{$q}}"&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;div class="input-group input-group-lg searchBar"&gt;
+      &lt;input type="text" autocomplete="off" class="form-control" value="{{$q}}" id="btnItems" placeholder="{{trans('misc.title_search_bar')}}"&gt;
+      &lt;span class="input-group-btn"&gt;
+        &lt;button class="btn btn-main btn-flat" type="submit" id="btnSearch"&gt;
+          &lt;i class="glyphicon glyphicon-search"&gt;&lt;/i&gt;
+        &lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </ul>
+
+  <ul>
+    <li class="title-list"><code><em>includes</em></code></li>
+    <li>comments.blade.php</li>
+    <pre class="line-numbers" data-start="13"><code class="language-markup">&lt;p class="comments-p mentions-links">{!! App\Helper::checkText( $comment->reply ) !!}&lt;/p&gt;</code></pre>
+  </ul>
+
+					</ul><!-- /.ul list-cgl -->
+
+          <hr />
+
+          <div class="text-center">
+            <p class="lead">Any problem or doubt send me an email to <strong>miguelvasquez991@gmail.com</strong> <br/>
+            Do not forget to visit <strong><a href="https://miguelvasquez.net/" target="_blank">miguelvasquez.net</a></strong></p>
+          </div>
+
+          <hr />
+
+          <div class="text-center">
+            <a href="https://www.paypal.me/MiguelVasquezSoto" target="_blank" class="btn btn-light btnPaypal"><img src="assets/images/paypal.png" width="16" height="16" /></i> Donate</a>
+            <small class="form-text text-muted">Any donation will be well received 😉</small>
+          </div>
+
+        </div><!-- /.col-md-12 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    </main><!-- /.container -->
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">&copy; Miguel Vasquez - Web Design and Development All Rights Reserved.
+          <a href="https://www.facebook.com/MiguelVasquezWeb"><i class="fab fa-facebook"></i></a>
+          <a href="https://twitter.com/MigueVasquezweb"><i class="fab fa-twitter"></i></a>
+          <a href="https://instagram.com/miguelvasquezweb"><i class="fab fa-instagram"></i></a>
+        </span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="assets/js/prism-line-highlight.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+  </body>
+</html>

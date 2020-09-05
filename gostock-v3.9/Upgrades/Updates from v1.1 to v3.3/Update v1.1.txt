@@ -1,0 +1,39 @@
+*********************************************************
+*                  Update v1.1                          *
+*********************************************************
+
+*** BUGS FIXED ***
+- Photos redirection
+- Count Members in Page Members
+- Count Likes in Admin Panel
+- Removed Social Share in Photos pending
+- Verify Email
+- Download image all users
+
+*** NEWS ****
+- Sitemaps - http://yoursite.com/sitemaps.xml
+- Get name from Facebook
+
+
+******************************************************
+***                   Files Affected              ****
+******************************************************
+
+/ routes / web.php
+
+/ app / Models / User.php
+/ app / Http / Controllers / ImageController.php
+/ app / Http / Controllers / Auth / RegisterController.php
+/ app / Http / Middleware / Downloads.php
+
+/ resources / views / images / show.blade.php
+/ resources / views / admin / dashboard.blade.php
+/ resources / views / default / members.blade.php
+/ resources / views / emails / verify.blade.php
+
+************ File New ***********************
+
+/ resources / views / default / sitemaps.blade.php
+
+
+**** Thanks! *****

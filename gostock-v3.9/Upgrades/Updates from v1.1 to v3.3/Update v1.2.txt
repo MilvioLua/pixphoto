@@ -1,0 +1,26 @@
+*********************************************************
+*                  Update v1.2                          *
+*********************************************************
+
+*** BUGS FIXED ***
+- Support HTTPS Google Fonts
+- Date in Sitemaps
+- Password Reset bug
+- Showing image of category
+- Error showing photos pending in some sections
+
+
+******************************************************
+***                   Files Affected              ****
+******************************************************
+
+
+/ app / Models / User.php
+/ app / Models / Query.php
+
+/ resources / views / include/ css_general.blade.php
+/ resources / views / default / sitemaps.blade.php
+/ resources / views / default / categories.blade.php
+
+
+**** Thanks! *****
